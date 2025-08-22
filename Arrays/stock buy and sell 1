@@ -1,0 +1,33 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+// stock buy and sell 1
+// buy the stock when it is low priced and sell it when the price is high
+// get the maximum profit from it
+
+class Solution{
+private:
+public:
+    int stockBuyAndSell1(vector<int> &arr)
+    {
+        int mini=INT_MAX,maxi=INT_MIN;
+        for(auto it:arr)
+        {
+            mini=min(mini,it);
+            maxi=max(maxi,it-mini);
+        }
+        return maxi;
+    }
+};
+int main()
+{
+    vector<int> arr={7,1,5,3,6,4};
+    for(auto it:arr)
+    {
+        cout<<it<<" ";
+    }
+    cout<<endl;
+    Solution solution;
+    auto res=solution.stockBuyAndSell1(arr);
+    cout<<"maximum profit is : "<<res<<endl;
+}
