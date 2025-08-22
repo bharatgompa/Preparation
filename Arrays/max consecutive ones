@@ -1,0 +1,39 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+// missing number in the array
+
+class Solution{
+private:
+public:
+    int maximumConsecutiveOnes(vector<int> &arr)
+    {
+        int count=0,maxi=0;
+        for(auto it:arr)
+        {
+            if(it==1)
+            {
+                count++;
+            }
+            else
+            {
+                maxi=max(maxi,count);
+                count=0;
+            }
+        }
+        return max(maxi,count);
+    }
+};
+int main()
+{
+    vector<int> arr={1,1,0,1,1,1};
+    for(auto it:arr)
+    {
+        cout<<it<<" ";
+    }
+    cout<<endl;
+    int n=arr.size();
+    Solution solution;
+    auto res=solution.maximumConsecutiveOnes(arr);
+    cout<<"maximum consecutive ones are : "<<res<<endl;
+}
