@@ -1,0 +1,51 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+// next permutation
+
+class Solution{
+private:
+public:
+    void findNextPerm(vector<int> &arr)
+    {
+        int n=arr.size(),ind=-1;
+        for(int i=n-1;i>0;i--)
+        {
+            if(arr[i]>arr[i-1])
+            {
+                ind=i-1;
+                break;
+            }
+        }
+        if(ind==-1)
+        {
+            reverse(begin(arr),end(arr));
+            return;
+        }
+        for(int i=n-1;i>ind;i--)
+        {
+            if(arr[i]>arr[ind])
+            {
+                swap(arr[i],arr[ind]);
+                break;
+            }
+        }
+        reverse(begin(arr)+ind+1,end(arr));
+        return;
+    }
+};
+int main()
+{
+    vector<int> arr={2,1,5,3,4};
+    for(auto it:arr)
+    {
+        cout<<it<<" ";
+    }
+    cout<<endl;
+    Solution solution;
+    solution.findNextPerm(arr);
+    for(auto it:arr)
+    {
+        cout<<it<<" ";
+    }
+}
