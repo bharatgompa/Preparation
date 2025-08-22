@@ -1,0 +1,38 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+// Two Sum
+
+class Solution{
+private:
+public:
+    pair<int,int> twoSum(vector<int> &arr,int k)
+    {
+        unordered_map<int,int> mp;
+        for(int i=0;i<arr.size();i++)
+        {
+            int rem=k-arr[i];
+            if(mp.count(rem))
+            {
+                return {i,mp[rem]};
+            }
+            mp[arr[i]]=i;
+        }
+        return {-1,-1};
+    }
+};
+int main()
+{
+    vector<int> arr={2,6,5,8,11};
+    for(auto it:arr)
+    {
+        cout<<it<<" ";
+    }
+    cout<<endl;
+    int k;
+    cin>>k;
+    Solution solution;
+    auto res=solution.twoSum(arr,k);
+    cout<<"first pair is : "<<res.first<<endl;
+    cout<<"second pair is : "<<res.second<<endl;
+}
