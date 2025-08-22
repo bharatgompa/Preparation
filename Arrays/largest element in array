@@ -1,0 +1,26 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+// largest element in an array
+
+class Solution{
+private:
+public:
+    int largestElement(vector<int> &arr)
+    {
+        return *max_element(begin(arr),end(arr));
+    }
+};
+int main()
+{
+    vector<int> arr={3,4,5,2,1};
+    for(auto it:arr)
+    {
+        cout<<it<<" ";
+    }
+    cout<<endl;
+    int n=arr.size();
+    Solution solution;
+    auto res=solution.largestElement(arr);
+    cout<<"Largest element in the array is : "<<res<<endl;
+}
