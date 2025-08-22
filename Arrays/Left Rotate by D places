@@ -1,0 +1,34 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+// Left Rotate the array
+
+class Solution{
+private:
+public:
+    void leftRotateArrayByDPlaces(vector<int> &arr,int d)
+    {
+        int n=arr.size();
+        d=d%n;
+        reverse(begin(arr),end(arr));
+        reverse(begin(arr),begin(arr)+n-d);
+        reverse(begin(arr)+n-d,end(arr));
+    }
+};
+int main()
+{
+    vector<int> arr={1,2,3,4,5};
+    for(auto it:arr)
+    {
+        cout<<it<<" ";
+    }
+    cout<<endl;
+    int d;
+    cin>>d;
+    Solution solution;
+    solution.leftRotateArrayByDPlaces(arr,d);
+    for(auto it:arr)
+    {
+        cout<<it<<" ";
+    }
+}
