@@ -6,7 +6,7 @@ using namespace std;
 class Solution{
 private:
 public:
-    int secondLargest(vector<int> &arr)
+    int secondSmallest(vector<int> &arr)
     {
         int first=INT_MAX,second=INT_MAX;
         for(auto it:arr)
@@ -34,6 +34,6 @@ int main()
     cout<<endl;
     int n=arr.size();
     Solution solution;
-    auto res=solution.secondLargest(arr);
+    auto res=solution.secondSmallest(arr);
     cout<<"second smallest element in the array is : "<<res<<endl;
 }
