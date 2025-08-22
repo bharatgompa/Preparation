@@ -1,0 +1,45 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+// rearrange the elements in positive and negative order
+// positive first 
+
+class Solution{
+private:
+public:
+    vector<int> rearrangeElements(vector<int> &arr)
+    {
+        int n=arr.size();
+        vector<int> res(n,0);
+        int posIndex=0,negIndex=1; 
+        for(auto it:arr)
+        {
+            if(it>0)
+            {
+                res[posIndex]=it;
+                posIndex+=2;
+            }
+            else
+            {
+                res[negIndex]=it;
+                negIndex+=2;
+            }
+        }
+        return res;
+    }
+};
+int main()
+{
+    vector<int> arr={1,2,-3,-1,-2,3};
+    for(auto it:arr)
+    {
+        cout<<it<<" ";
+    }
+    cout<<endl;
+    Solution solution;
+    auto res=solution.rearrangeElements(arr);
+    for(auto it:res)
+    {
+        cout<<it<<" ";
+    }
+}
