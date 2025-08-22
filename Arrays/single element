@@ -1,0 +1,30 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+// single element in the array
+
+class Solution{
+private:
+public:
+    int findSingleElement(vector<int> &arr)
+    {
+        int res=0;
+        for(auto it:arr)
+        {
+            res^=it;
+        }
+        return res;
+    }
+};
+int main()
+{
+    vector<int> arr={1,1,2,2,3,4,4};
+    for(auto it:arr)
+    {
+        cout<<it<<" ";
+    }
+    cout<<endl;
+    Solution solution;
+    auto res=solution.findSingleElement(arr);
+    cout<<"single element is : "<<res<<endl;
+}
