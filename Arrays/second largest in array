@@ -1,0 +1,39 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+// second largest element in an array
+
+class Solution{
+private:
+public:
+    int secondLargest(vector<int> &arr)
+    {
+        int first=INT_MIN,second=INT_MIN;
+        for(auto it:arr)
+        {
+            if(it>first)
+            {
+                second=first;
+                first=it;
+            }
+            else if(it>second and it!=first)
+            {
+                second=it;
+            }
+        }
+        return second;
+    }
+};
+int main()
+{
+    vector<int> arr={3,4,5,2,1,9};
+    for(auto it:arr)
+    {
+        cout<<it<<" ";
+    }
+    cout<<endl;
+    int n=arr.size();
+    Solution solution;
+    auto res=solution.secondLargest(arr);
+    cout<<"second largest element in the array is : "<<res<<endl;
+}
