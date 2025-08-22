@@ -25,7 +25,7 @@ public:
             }
             if(!mp.count(sum))
             {
-                mp[rem]=i;
+                mp[sum]=i;
             }
         }
         return maxi;
