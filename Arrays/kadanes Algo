@@ -1,0 +1,35 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+// maximum sum of the largest contigous subarray is kadanes Algo
+
+class Solution{
+private:
+public:
+    int kadanesAlgo(vector<int> &arr)
+    {
+        int sum=0,maxi=INT_MIN;
+        for(auto it:arr)
+        {
+            sum+=it;
+            maxi=max(maxi,sum);
+            if(sum<0)
+            {
+                sum=0;
+            }
+        }
+        return maxi;
+    }
+};
+int main()
+{
+    vector<int> arr={-2,1,-3,4,-1,2,1,-5,4};
+    for(auto it:arr)
+    {
+        cout<<it<<" ";
+    }
+    cout<<endl;
+    Solution solution;
+    auto res=solution.kadanesAlgo(arr);
+    cout<<"sum of the largest contiguous subarray is : "<<res<<endl;
+}
