@@ -1,0 +1,41 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+// move zeroes to the end of the array 
+
+class Solution{
+private:
+public:
+    void movesZeroesToEnd(vector<int> &arr)
+    {
+        int n=arr.size(),i=0,j=0;
+        while(i<n and arr[i]==0)
+        {
+            i++;
+        }
+        while(i<n)
+        {
+            if(arr[i]!=0)
+            {
+                swap(arr[i],arr[j]);
+                j++;
+            }
+            i++;
+        }
+    }
+};
+int main()
+{
+    vector<int> arr={1,2,0,1,0,4,0};
+    for(auto it:arr)
+    {
+        cout<<it<<" ";
+    }
+    cout<<endl;
+    Solution solution;
+    solution.movesZeroesToEnd(arr);
+    for(auto it:arr)
+    {
+        cout<<it<<" ";
+    }
+}
