@@ -1,0 +1,47 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+// longest SubArray With Given Sum K Positives
+
+class Solution{
+private:
+public:
+    int longestSubArrayWithGivenSumKPositives(vector<int> &arr,int k)
+    {
+        unordered_map<int,int> mp;
+        int n=arr.size(),sum=0,maxi=0;
+        for(int i=0;i<n;i++)
+        {
+            sum+=arr[i];
+            if(sum==k)
+            {
+                maxi=max(maxi,i+1);
+            }
+            int rem=sum-k;
+            if(mp.count(rem))
+            {
+                int len=i-mp[rem];
+                maxi=max(maxi,len);
+            }
+            if(!mp.count(sum))
+            {
+                mp[rem]=i;
+            }
+        }
+        return maxi;
+    }
+};
+int main()
+{
+    vector<int> arr={2,3,5,1,9};
+    for(auto it:arr)
+    {
+        cout<<it<<" ";
+    }
+    cout<<endl;
+    int k;
+    cin>>k;
+    Solution solution;
+    auto res=solution.longestSubArrayWithGivenSumKPositives(arr,k);
+    cout<<"longest sub array with given sum k is : "<<res<<endl;
+}
