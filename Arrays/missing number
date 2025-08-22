@@ -1,0 +1,32 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+// missing number in the array
+
+class Solution{
+private:
+public:
+    int missingNumber(vector<int> &arr,int n)
+    {
+        int sum=0;
+        long sumOfNaturalNumbers=n*(n+1)/2;
+        for(auto it:arr)
+        {
+            sum+=it;
+        }
+        return sumOfNaturalNumbers-sum;
+    }
+};
+int main()
+{
+    vector<int> arr={1,2,4,5};
+    for(auto it:arr)
+    {
+        cout<<it<<" ";
+    }
+    cout<<endl;
+    int n=arr.size();
+    Solution solution;
+    auto res=solution.missingNumber(arr,n+1);
+    cout<<"missing number is : "<<res<<endl;
+}
