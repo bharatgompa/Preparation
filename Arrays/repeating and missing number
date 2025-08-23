@@ -1,0 +1,42 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+// find repeating and missing number in the array
+
+class Solution{
+private:
+public:
+    vector<int> findRepeatingAndMissing(vector<int> &arr)
+    {
+        int n=arr.size(),sum=0,pro=0;
+        int sumOfNaturalNumbers = n*(n+1)/2;
+        int sumOfProductOfNaturalNumbers = n*(n+1)*(2*n+1)/6;
+        for(auto it:arr)
+        {
+            sum+=it;
+            pro+=it*it;
+        }
+        int x = sum-sumOfNaturalNumbers;
+        int y = pro-sumOfProductOfNaturalNumbers;
+        
+        y=y/x;
+        
+        int a=(x+y)/2;
+        int b=a-x;
+        
+        return {a,b};
+    }
+};
+int main()
+{
+    vector<int> arr={1,1,2,5,4};
+    for(auto it:arr)
+    {
+        cout<<it<<" ";
+    }
+    cout<<endl;
+    Solution solution;
+    auto res=solution.findRepeatingAndMissing(arr);
+    cout<<"repeating number is : "<<res[0]<<endl;
+    cout<<"missing number is : "<<res[1]<<endl;
+}
