@@ -1,0 +1,67 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+// printing the spiral matrix 
+
+class Solution{
+private:
+public:
+    vector<int> printSpiralMatrix(vector<vector<int>> &arr)
+    {
+        int m=arr.size(),n=arr[0].size(),k=0;
+        vector<int> res(m*n,0);
+        int top=0,left=0,bottom=m-1,right=n-1;
+        while(top<=bottom and left<=right)
+        {
+            for(int i=left;i<=right;i++)
+            {
+                res[k++]=arr[top][i];
+            }
+            top++;
+            for(int i=top;i<=bottom;i++)
+            {
+                res[k++]=arr[i][right];
+            }
+            right--;
+            if(top<=bottom)
+            {
+                for(int i=right;i>=left;i--)
+                {
+                    res[k++]=arr[bottom][i];
+                }
+                bottom--;
+            }
+            if(left<=right)
+            {
+                for(int i=bottom;i>=top;i--)
+                {
+                    res[k++]=arr[i][left];
+                }
+                left++;
+            }
+        }
+        return res;
+    }
+};
+int main()
+{
+    vector<vector<int>> arr={{1,2,3,4},
+                             {5,6,7,8},
+                             {9,10,11,12},
+                             {13,14,15,16}};
+    for(auto it:arr)
+    {
+        for(auto i:it)
+        {
+            cout<<i<<" ";
+        }
+        cout<<endl;
+    }
+    cout<<endl;
+    Solution solution;
+    auto res=solution.printSpiralMatrix(arr);
+    for(auto it:res)
+    {
+        cout<<it<<" ";
+    }
+}
