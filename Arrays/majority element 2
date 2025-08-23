@@ -1,0 +1,74 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+// majority element greater than n/3 so at max there will be 2 elements
+
+class Solution{
+private:
+public:
+    vector<int> majorityElement2(vector<int> &arr)
+    {
+        vector<int> res;
+        int n=arr.size(),ele1=0,count1=0,ele2=0,count2=0;
+        for(auto it:arr)
+        {
+            if(count1==0 and ele2!=it)
+            {
+                ele1=it;
+                count1++;
+            }
+            else if(count2==0 and ele1!=it)
+            {
+                ele2=it;
+                count2++;
+            }
+            else if(ele1==it)
+            {
+                count1++;
+            }
+            else if(ele2==it)
+            {
+                count2++;
+            }
+            else
+            {
+                count1--;
+                count2--;
+            }
+        }
+        count1=0,count2=0;
+        for(auto it:arr)
+        {
+            if(ele1==it)
+            {
+                count1++;
+            }
+            if(ele2==it)
+            {
+                count2++;
+            }
+        }
+        int mini=(int)(n/3)+1;
+        if(ele1>=mini)
+        {
+            res.push_back(ele1);
+        }
+        if(ele2>=mini)
+        {
+            res.push_back(ele2);
+        }
+        return res;
+    }
+};
+int main()
+{
+    vector<int> arr={11,33,33,11,33,11};
+    for(auto it:arr)
+    {
+        cout<<it<<" ";
+    }
+    cout<<endl;
+    Solution solution;
+    auto res=solution.majorityElement2(arr);
+    cout<<res[0]<<" "<<res[1]<<endl;
+}
