@@ -1,0 +1,38 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+// number Of SubArrays Whose Sum equals k is
+// use map and prefix sum
+
+class Solution{
+private:
+public:
+    int numberOfSubArraysWhoseSumIsK(vector<int> &arr,int k)
+    {
+        unordered_map<int,int> mp;
+        int sum=0,count=0;
+        mp[0]=1;
+        for(auto it:arr)
+        {
+            sum+=it;
+            int rem=sum-k;
+            count+=mp[rem];
+            mp[sum]++;
+        }
+        return count;
+    }
+};
+int main()
+{
+    vector<int> arr={3,1,2,4};
+    for(auto it:arr)
+    {
+        cout<<it<<" ";
+    }
+    cout<<endl;
+    int k;
+    cin>>k;
+    Solution solution;
+    auto res=solution.numberOfSubArraysWhoseSumIsK(arr,k);
+    cout<<"number of subarray's whose sum equals k is : "<<res<<endl;
+}
