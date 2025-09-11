@@ -1,0 +1,35 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+class Solution{
+private:
+public:
+    int countSubArrayHavingXorEqualsK(vector<int> &arr,int k)
+    {
+        int res=0,ans=0;
+        unordered_map<int,int> mp;
+        mp[ans]++;
+        for(auto it:arr)
+        {
+            ans^=it;
+            int ans=ans^k;
+            res+=mp[ans];
+            mp[ans]++;
+        }
+        return res;
+    }
+};
+int main()
+{
+    vector<int> arr = {4,2,2,6,4};
+    for(auto it:arr)
+    {
+        cout<<it<<" ";
+    }
+    cout<<endl;
+    int k=6;
+    Solution solution;
+    auto res=solution.countSubArrayHavingXorEqualsK(arr,k);
+    cout<<"number of subarray's having xor of elements k is : "<<res<<endl;
+}
+
