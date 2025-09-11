@@ -1,0 +1,39 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+class Solution{
+private:
+public:
+    int maximumProductSubArray(vector<int> &arr)
+    {
+        int n=arr.size(),pre=1,suff=1,maxi=0;
+        for(int i=0;i<n;i++)
+        {
+            if(pre==0)
+            {
+                pre=1;
+            }
+            if(suff==0)
+            {
+                suff=1;
+            }
+            pre=pre*arr[i];
+            suff=suff*arr[n-i-1];
+            maxi=max(maxi,max(pre,suff));
+        }
+        return maxi;
+    }
+};
+int main()
+{
+    vector<int> arr = {1,2,-3,0,-4,-5};
+    for(auto it:arr)
+    {
+        cout<<it<<" ";
+    }
+    cout<<endl;
+    Solution solution;
+    auto res=solution.maximumProductSubArray(arr);
+    cout<<"maximum product subarray is : "<<res<<endl;
+}
+
