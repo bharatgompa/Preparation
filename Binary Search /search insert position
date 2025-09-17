@@ -1,0 +1,26 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+// search insert position in the array .. if given element is present than return its index or else find the index where it need to be inserted
+
+class Solution{
+private:
+public:
+    int searchInsertPosition(vector<int> &arr,int k)
+    {
+        return lower_bound(begin(arr),end(arr),k)-begin(arr);
+    }
+};
+int main()
+{
+    vector<int> arr={1,2,4,7};
+    for(auto it:arr)
+    {
+        cout<<it<<" ";
+    }
+    cout<<endl;
+    int k=2;
+    Solution solution;
+    auto res=solution.searchInsertPosition(arr,k);
+    cout<<res<<endl;
+}
