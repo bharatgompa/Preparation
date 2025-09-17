@@ -1,0 +1,81 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+// so number of occurences will be (last-first+1);
+
+class Solution{
+private:
+public:
+    int findFirstOccurence(vector<int> &arr,int k)
+    {
+        int n=arr.size(),low=0,high=n-1,res=-1;
+        while(low<=high)
+        {
+            int mid=low+(high-low)/2;
+            if(arr[mid]==k)
+            {
+                res=mid;
+                high=mid-1;
+            }
+            else if(arr[mid]<k)
+            {
+                low=mid+1;
+            }
+            else
+            {
+                high=mid-1;
+            }
+        }
+        return res;
+    }
+    int findLastOccurence(vector<int> &arr,int k)
+    {
+        int n=arr.size(),low=0,high=n-1,res=-1;
+        while(low<=high)
+        {
+            int mid=low+(high-low)/2;
+            if(arr[mid]==k)
+            {
+                res=mid;
+                low=mid+1;
+            }
+            else if(arr[mid]<k)
+            {
+                low=mid+1;
+            }
+            else
+            {
+                high=mid-1;
+            }
+        }
+        return res;
+    }
+};
+int main()
+{
+    vector<int> arr={2, 2 , 3 , 3 , 3 , 3 , 4};
+    for(auto it:arr)
+    {
+        cout<<it<<" ";
+    }
+    cout<<endl;
+    int k=2;
+    Solution solution;
+    auto res1=solution.findFirstOccurence(arr,k); 
+    auto res2=solution.findLastOccurence(arr,k);
+    if(res1==-1)
+    {
+        cout<<"element not found"<<endl;
+    }
+    else if(res2==res1)
+    {
+        cout<<"1"<<endl;
+    }
+    else
+    {
+        cout<<"first occurence is : "<<res1<<endl;
+        cout<<"last occurence is : "<<res2<<endl;
+        cout<<"number of occurences : "<<res2-res1+1<<endl;
+    }
+}
+
