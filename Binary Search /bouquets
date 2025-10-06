@@ -1,0 +1,63 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+// given the array where a flower blooms of arr[i]th day and need to find the minimum day for making m bouquets with k flowers
+
+class Solution{
+private:
+public:
+    int solve(vector<int> &arr,int mid,int m,int k)
+    {
+        int ans=0,cnt=0;
+        for(auto it:arr)
+        {
+            if(it<=mid)
+            {
+                cnt++;
+            }
+            else
+            {
+                ans+=(cnt/k);
+                cnt=0;
+            }
+        }
+        ans+=(cnt/k);
+        return ans>=m;
+    }
+    int Bouquets(vector<int> &arr,int m,int k)
+    {
+        int n=arr.size(),res=0;
+        if(m*k > n) return -1;
+        int low=*min_element(begin(arr),end(arr));
+        int high=*max_element(begin(arr),end(arr));
+        
+        while(low<=high)
+        {
+            int mid=low+(high-low)/2;
+            if(solve(arr,mid,m,k))
+            {
+                res=mid;
+                high=mid-1;
+            }
+            else
+            {
+                low=mid+1;
+            }
+        }
+        return res;
+    }
+};
+int main()
+{
+    vector<int> arr={7, 7, 7, 7, 13, 11, 12, 7};
+    for(auto it:arr)
+    {
+        cout<<it<<" ";
+    }
+    cout<<endl;
+    int m=2,k=3;
+    Solution solution;
+    auto res=solution.Bouquets(arr,m,k);
+    cout<<"minimum days required : "<<res<<endl;
+}
+
