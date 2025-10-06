@@ -1,0 +1,57 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+// find minimum number of bananas koko must eat to finish all the piles within given h hours
+
+class Solution{
+private:
+public:
+    int solve(vector<int> &arr,int mid)
+    {
+        int ans=0;
+        for(auto it:arr)
+        {
+            int rem=it%mid;
+            ans+=(it/mid);
+            if(rem)
+            {
+                ans++;
+            }
+        }
+        return ans;
+    }
+    int kokoEatingBananas(vector<int> &arr,int h)
+    {
+        int low=1,high=*max_element(begin(arr),end(arr));
+        int res=0;
+        while(low<=high)
+        {
+            int mid=low+(high-low)/2;
+            int ans=solve(arr,mid);
+            if(ans<=h)
+            {
+                res=mid;
+                high=mid-1;
+            }
+            else
+            {
+                low=mid+1;
+            }
+        }
+        return res;
+    }
+};
+int main()
+{
+    vector<int> arr={25, 12, 8, 14, 19};
+    for(auto it:arr)
+    {
+        cout<<it<<" ";
+    }
+    cout<<endl;
+    int h=5;
+    Solution solution;
+    auto res=solution.kokoEatingBananas(arr,h);
+    cout<<"minimum number of bananas : "<<res<<endl;
+}
+
