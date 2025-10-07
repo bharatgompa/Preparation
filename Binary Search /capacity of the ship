@@ -1,0 +1,61 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+// given array of weigihts of the shipments need to be shipped .. find the minimum capacity of the ship so that shipments will be shipped in d days
+
+class Solution{
+private:
+public:
+    bool solve(vector<int> &arr,int mid,int k)
+    {
+        int ans=0,count=1;
+        for(auto it:arr)
+        {
+            if((ans+it)<=mid)
+            {
+               ans+=it; 
+            }
+            else
+            {
+                count++;
+                ans=it;
+            }
+        }
+        return count<=k;
+    }
+    int findShipCapacity(vector<int> &arr,int k)
+    {
+        int low=*max_element(begin(arr),end(arr));
+        int high=accumulate(begin(arr),end(arr),0);
+        int res=0;
+        
+        while(low<=high)
+        {
+            int mid=low+(high-low)/2;
+            if(solve(arr,mid,k))
+            {
+                res=mid;
+                high=mid-1;
+            }
+            else
+            {
+                low=mid+1;
+            }
+        }
+        return res;
+    }
+};
+int main()
+{
+    vector<int> arr={5,4,5,2,3,4,5,6};
+    for(auto it:arr)
+    {
+        cout<<it<<" ";
+    }
+    cout<<endl;
+    int k=5;
+    Solution solution;
+    auto res=solution.findShipCapacity(arr,k);
+    cout<<"minium ship capacity is : "<<res<<endl;
+}
+
