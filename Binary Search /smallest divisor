@@ -1,0 +1,52 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+// given array of integers and a threshold value 'k' find the smallest divisor such that sum of divisions will be less than or equal to given limit 'k'
+
+class Solution{
+private:
+public:
+    bool solve(vector<int> &arr,int mid,int k)
+    {
+        int ans=0;
+        for(auto it:arr)
+        {
+            ans+=ceil(double(it)/double(mid));
+        }
+        return ans<=k;
+    }
+    int findSmallestDivisor(vector<int> &arr,int k)
+    {
+        int low=1,high=*max_element(begin(arr),end(arr));
+        int res=0;
+        while(low<=high)
+        {
+            int mid=low+(high-low)/2;
+            if(solve(arr,mid,k))
+            {
+                res=mid;
+                high=mid-1;
+            }
+            else
+            {
+                low=mid+1;
+            }
+        }
+        return res;
+    }
+};
+int main()
+{
+    vector<int> arr={8,4,2,3};
+    for(auto it:arr)
+    {
+        cout<<it<<" ";
+    }
+    cout<<endl;
+    int k=10;
+    Solution solution;
+    auto res=solution.findSmallestDivisor(arr,k);
+    cout<<"smallest divisor is : "<<res<<endl;
+}
+
+
