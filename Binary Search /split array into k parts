@@ -1,0 +1,60 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+// split array into k subarray in contigous mannger
+
+class Solution{
+private:
+public:
+    int solve(vector<int> &arr,int mid)
+    {
+        int count=1,res=0;
+        for(auto it:arr)
+        {
+            if((it+res)<=mid)
+            {
+                res+=it;
+            }
+            else
+            {
+                res=it;
+                count++;
+            }
+        }
+        return count;
+    }
+    int PaintersPartition(vector<int> &arr,int k)
+    {
+        int low=*max_element(begin(arr),end(arr));
+        int high=accumulate(begin(arr),end(arr),0);
+        int res=0;
+        while(low<=high)
+        {
+            int mid=low+(high-low)/2;
+            if(solve(arr,mid)<=k)
+            {
+                res=mid;
+                high=mid-1;
+            }
+            else
+            {
+                low=mid+1;
+            }
+        }
+        return res;
+    }
+};
+int main()
+{
+    vector<int> arr={3,5,1};
+    for(auto it:arr)
+    {
+        cout<<it<<" ";
+    }
+    cout<<endl;
+    int k=3;
+    Solution solution;
+    auto res=solution.PaintersPartition(arr,k);
+    cout<<res<<endl;
+}
+
