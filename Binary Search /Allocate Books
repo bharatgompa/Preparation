@@ -1,0 +1,62 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+// Allocate books to m students
+
+class Solution{
+private:
+public:
+    int solve(vector<int> &arr,int mid)
+    {
+        int count=1,res=0;
+        for(auto it:arr)
+        {
+            if((res+it) <= mid)
+            {
+                res+=it;
+            }
+            else
+            {
+                count++;
+                res=it;
+            }
+        }
+        return count;
+    }
+    int allocateBooks(vector<int> &arr,int m)
+    {
+        if(m>arr.size()) return -1;
+        int low=*max_element(begin(arr),end(arr));
+        int high=accumulate(begin(arr),end(arr),0);
+        int res=0;
+        while(low<=high)
+        {
+            int mid=low+(high-low)/2;
+            if(solve(arr,mid) <= m)
+            {
+                res=mid;
+                high=mid-1;
+            }
+            else
+            {
+                low=mid+1;
+            }
+        }
+        return res;
+    }
+};
+int main()
+{
+    vector<int> arr={25, 46, 28, 49, 24};
+    for(auto it:arr)
+    {
+        cout<<it<<" ";
+    }
+    cout<<endl;
+    int m=4;
+    Solution solution;
+    auto res=solution.allocateBooks(arr,m);
+    cout<<res<<endl;
+}
+
+
