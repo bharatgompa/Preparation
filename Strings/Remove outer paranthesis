@@ -1,0 +1,42 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+// remove the outer most paranthesis and print the result
+
+class Solution{
+private:
+public:
+    string removeOuterParanthesis(string s)
+    {
+        string res="";
+        int level=0;
+        for(auto it:s)
+        {
+            if(it=='(')
+            {
+                if(level>0)
+                {
+                    res+=it;
+                }
+                level++;
+            }
+            else
+            {
+                level--;
+                if(level>0)
+                {
+                    res+=it;
+                }
+            }
+        }
+        return res;
+    }
+};
+int main()
+{
+    string s="()(()())(())";
+    cout<<s<<endl;
+    Solution solution;
+    auto res=solution.removeOuterParanthesis(s);
+    cout<<res<<endl;
+}
