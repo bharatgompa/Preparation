@@ -1,0 +1,36 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+class Solution{
+private:
+public:
+    string longestCommonPrefix(vector<string> &s)
+    {
+        string ans="";
+        sort(begin(s),end(s));
+        int n=s.size();
+        string first=s[0],last=s[n-1];
+        for(int i=0;i<min(first.size(),last.size());i++)
+        {
+            if(first[i]!=last[i])
+            {
+                return ans;
+            }
+            ans+=first[i];
+        }
+        return ans;
+    }
+};
+int main()
+{
+    vector<string> s = {"flower", "flow", "flight"};
+    for(auto it:s)
+    {
+        cout<<it<<" ";
+    }
+    cout<<endl;
+    Solution solution;
+    auto res=solution.longestCommonPrefix(s);
+    cout<<"longest common prefix : "<<res<<endl;
+}
+
