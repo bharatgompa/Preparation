@@ -1,0 +1,43 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+class Solution{
+private:
+public:
+    string largestOddNumber(string s)
+    {
+        int n=s.size(),i=n-1,j=0;
+        while(i>=0)
+        {
+            if((s[i]-'0')%2)
+            {
+                break;
+            }
+            else
+            {
+                i--;
+            }
+        }
+        while(j<n)
+        {
+            if(s[j]!='0')
+            {
+                break;
+            }
+            else
+            {
+                j++;
+            }
+        }
+        return s.substr(j,i-j+1);
+    }
+};
+int main()
+{
+    string s="5347";
+    cout<<s<<endl;
+    Solution solution;
+    auto res=solution.largestOddNumber(s);
+    cout<<"largest Odd Number is : "<<res<<endl;
+}
+
