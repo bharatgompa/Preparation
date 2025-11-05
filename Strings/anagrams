@@ -1,0 +1,47 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+class Solution{
+private:
+public:
+    bool anagrams(string s1,string s2)
+    {
+        if(s1.size()!=s2.size())
+        {
+            return false;
+        }
+        vector<int> v(26,0);
+        for(auto it:s1)
+        {
+            v[it-'a']++;
+        }
+        for(auto it:s2)
+        {
+            v[it-'a']--;
+        }
+        for(int i=0;i<26;i++)
+        {
+            if(v[i]!=0)
+            {
+                return false;
+            }
+        }
+        return true;
+    }
+};
+int main()
+{
+    string s1 = "rules";
+    string s2 = "lesrt";
+    Solution solution;
+    auto res=solution.anagrams(s1,s2);
+    if(res)
+    {
+        cout<<"Yes"<<endl;
+    }
+    else
+    {
+        cout<<"No"<<endl;
+    }
+}
+
