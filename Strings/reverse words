@@ -25,3 +25,64 @@ int main()
     auto res=solution.reverseWords(s);
     cout<<res<<endl;
 }
+
+
+//another method without stringstream
+
+#include<bits/stdc++.h>
+using namespace std;
+
+class Solution{
+private:
+public:
+    string reverseWords(string &s)
+    {
+        int n=s.size(),i=0,j=n-1;
+        string res="",word="";
+        while(i<n)
+        {
+            if(s[i]==' ')
+            {
+                i++;
+            }
+            else
+            {
+                break;
+            }
+        }
+        while(j>=0)
+        {
+            if(s[j]==' ')
+            {
+                j--;
+            }
+            else
+            {
+                break;
+            }
+        }
+        while(i<=j)
+        {
+            word="";
+            while(s[i]!=' ' and i<=j)
+            {
+                word+=s[i++];
+            }
+            i++;
+            res=word+" "+res;
+        }
+        res.pop_back();
+        return res;
+    }
+};
+int main()
+{
+    string s=" amazing coding skills ";
+    cout<<s<<endl;
+    
+    Solution solution;
+    auto res=solution.reverseWords(s);
+    cout<<res<<endl;
+}
+
+
