@@ -1,0 +1,43 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+class Solution{
+private:
+public:
+    int findTotalSubstrings(string s,int k)
+    {
+        int n=s.size(),i=0,res=0;
+        unordered_map<char,int> mp;
+        for(int j=0;j<n;j++)
+        {
+            mp[s[j]]++;
+            while(mp.size()>k)
+            {
+                mp[s[i]]--;
+                if(mp[s[i]]==0)
+                {
+                    mp.erase(s[i]);
+                }
+                i++;
+            }
+            res+=(j-i+1);
+        }
+        return res;
+    }
+    int findTotalSubstringsWithK(string &s,int k)
+    {
+        return findTotalSubstrings(s,k) - findTotalSubstrings(s,k-1);
+    }
+};
+int main()
+{
+    string s="pqpqs";
+    cout<<s<<endl;
+    int k=2;
+    Solution solution;
+    auto res=solution.findTotalSubstringsWithK(s,k);
+    cout<<res<<endl;
+}
+
+
+
