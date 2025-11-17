@@ -1,0 +1,28 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+class Solution{
+private:
+public:
+    bool findRotation(string &s1,string &s2)
+    {
+        string s=s2+s2;
+        return s.find(s1)!=string::npos;
+    }
+};
+int main()
+{
+    string s1="rotation";
+    string s2="tionrota";
+    Solution solution;
+    auto res=solution.findRotation(s1,s2);
+    if(res==true)
+    {
+        cout<<"Yes";
+    }
+    else
+    {
+        cout<<"No";
+    }
+}
+
