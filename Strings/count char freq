@@ -1,0 +1,49 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+class Solution{
+private:
+public:
+    static bool comp(pair<int,int> p1,pair<int,int> p2)
+    {
+        if(p1.second=p2.second)
+        {
+            return p1.first<p2.first;
+        }
+        return p1.second>p2.second;
+    }
+    vector<char> findUnique(string &s)
+    {
+        vector<char> res;
+        vector<int> v(26,0);
+        for(auto it:s)
+        {
+            v[it-'a']++;
+        }
+        vector<pair<char,int>> ans;
+        for(int i=0;i<26;i++)
+        {
+            ans.push_back({char(i+'a'),v[i]});
+        }
+        sort(begin(ans),end(ans),comp);
+        for(auto it:ans)
+        {
+            if(it.second>0)
+            res.push_back(it.first);
+        }
+        return res;
+    }
+};
+int main()
+{
+    string s="raaaajj";
+    cout<<s<<endl;
+    Solution solution;
+    auto res=solution.findUnique(s);
+    for(auto it:res)
+    {
+        cout<<it<<" ";
+    }
+}
+
+
