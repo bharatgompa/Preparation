@@ -1,0 +1,27 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+class Solution{
+private:
+public:
+    string reverseWords(string &s)
+    {
+        stringstream ss(s);
+        string word="",res="";
+        while(ss>>word)
+        {
+            res=word+" "+res;
+        }
+        res.pop_back();
+        return res;
+    }
+};
+int main()
+{
+    string s=" amazing coding skills ";
+    cout<<s<<endl;
+    
+    Solution solution;
+    auto res=solution.reverseWords(s);
+    cout<<res<<endl;
+}
