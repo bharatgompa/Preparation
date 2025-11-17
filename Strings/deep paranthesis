@@ -1,0 +1,36 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+class Solution{
+private:
+public:
+    int findDeepNestedParanthesis(string &s)
+    {
+        int open=0,maxi=0;
+        for(int i=0;i<s.size();i++)
+        {
+            if(s[i]=='(')
+            {
+                open++;
+            }
+            else if(s[i]==')')
+            {
+                open--;
+            }
+            maxi=max(maxi,open);
+        }
+        return maxi;
+    }
+};
+int main()
+{
+    string s="(1+(2*3)+((8)/4))+1";
+    cout<<s<<endl;
+    Solution solution;
+    auto res=solution.findDeepNestedParanthesis(s);
+    cout<<res<<endl;
+}
+
+
+
+
